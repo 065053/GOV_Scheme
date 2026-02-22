@@ -10,24 +10,42 @@ document.getElementById('profile-form').addEventListener('submit', async functio
     btn.disabled = true;
 
     try {
-        const response = await fetch('/api/schemes', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ age, occupation, income })
-        });
-
-        const data = await response.json();
-        renderSchemes(data.matches);
+        // Fetch the raw JSON directly instead of making an API call to a backend
+        const response = await fetch('schemes_db.json');
+        const allSchemes = await response.json();
+        
+        // Run the matching engine purely on the frontend
+        const matched = filterSchemes(allSchemes, age, occupation, income);
+        
+        // Render the results
+        renderSchemes(matched);
     } catch (error) {
         console.error('Error fetching schemes:', error);
-        document.getElementById('status-message').innerHTML = '<span style="color: #EF4444;">Failed to fetch schemes. Please check your connection.</span>';
+        document.getElementById('status-message').innerHTML = '<span style="color: #EF4444;">Failed to load schemes database.</span>';
     } finally {
         btn.textContent = 'Find Matches';
         btn.disabled = false;
     }
 });
+
+// The matching engine logic translated to JavaScript
+function filterSchemes(schemes, age, occupation, income) {
+    const matched = [];
+    const occLower = occupation.toLowerCase();
+    
+    for (const s of schemes) {
+        const ageValid = s.age_range.min <= age && age <= s.age_range.max;
+        const incomeValid = s.max_income_limit >= income;
+        
+        const targetOccs = s.target_occupation.map(o => o.toLowerCase());
+        const occValid = targetOccs.includes('all') || targetOccs.includes(occLower);
+        
+        if (ageValid && incomeValid && occValid) {
+            matched.push(s);
+        }
+    }
+    return matched;
+}
 
 function renderSchemes(schemes) {
     const container = document.getElementById('results-container');
@@ -36,7 +54,6 @@ function renderSchemes(schemes) {
     container.innerHTML = ''; // Clear previous
 
     if (!document.getElementById('age').value) {
-        // Initial state logic fallback handling
         return;
     }
 
