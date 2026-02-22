@@ -1,0 +1,212 @@
+:root {
+    --bg-main: #0B0E14;
+    --bg-sidebar: #131722;
+    --bg-card: #1E2332;
+    --text-primary: #F0F4F8;
+    --text-secondary: #94A0B8;
+    --accent: #4F46E5;
+    --accent-hover: #4338CA;
+    --accent-glow: rgba(79, 70, 229, 0.4);
+    --border: #2A3143;
+    --success: #10B981;
+    --font: 'Inter', -apple-system, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 300px;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border);
+    padding: 2rem;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+}
+
+.sidebar-title {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.input-group input, 
+.input-group select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.input-group input:focus, 
+.input-group select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 0.875rem;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 1rem;
+}
+
+.primary-btn:hover {
+    background-color: var(--accent-hover);
+    box-shadow: 0 4px 12px var(--accent-glow);
+    transform: translateY(-1px);
+}
+
+/* Main Content area */
+.main-content {
+    margin-left: 300px;
+    flex-grow: 1;
+    padding: 3rem;
+}
+
+header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+header p {
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+}
+
+.schemes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Scheme Cards Setup */
+.scheme-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.scheme-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(79, 70, 229, 0.4);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.card-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.card-checklist-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+.card-checklist {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.card-checklist li {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.card-checklist li::before {
+    content: "✓";
+    color: var(--success);
+    margin-right: 0.5rem;
+    font-weight: bold;
+}
+
+.card-link {
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    background-color: rgba(79, 70, 229, 0.1);
+    color: #818CF8;
+    text-decoration: none;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 500;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+    border: 1px solid rgba(79, 70, 229, 0.2);
+}
+
+.card-link:hover {
+    background-color: rgba(79, 70, 229, 0.2);
+    color: #A5B4FC;
+}
