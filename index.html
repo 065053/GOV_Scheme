@@ -4,51 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Discover government welfare schemes tailored to your profile.">
-    <title>Welfare Matching Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>National Welfare Scheme Portal</title>
+    <!-- Modern Official Fonts: Merriweather for headings, Inter for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-container">
-        <!-- Sidebar -->
+        <!-- Sidebar Navigation & Profile Form -->
         <aside class="sidebar">
-            <h1 class="brand">Welfare Portal</h1>
-            <h2 class="sidebar-title">Applicant Profile</h2>
+            <div class="brand-wrapper">
+                <div class="emblem-placeholder">
+                    <!-- Icon representing an official government emblem/seal -->
+                    🏛
+                </div>
+                <h1 class="brand">Welfare Scheme<br>Matching Portal</h1>
+            </div>
+
+            <h2 class="sidebar-title">Determine Eligibility</h2>
             
             <form id="profile-form">
                 <div class="input-group">
-                    <label for="age">Age</label>
-                    <input type="number" id="age" name="age" min="1" max="120" value="22" required>
+                    <label for="age">Applicant Age</label>
+                    <input type="number" id="age" name="age" min="1" max="120" value="22" required placeholder="e.g., 22">
                 </div>
 
                 <div class="input-group">
-                    <label for="occupation">Occupation</label>
+                    <label for="occupation">Current Occupation</label>
                     <select id="occupation" name="occupation" required>
                         <option value="Student">Student</option>
-                        <option value="Farmer">Farmer</option>
+                        <option value="Farmer">Farmer / Agriculture</option>
                         <option value="Small Business Owner">Small Business Owner</option>
-                        <option value="Unemployed">Unemployed</option>
+                        <option value="Unemployed">Unemployed / Job Seeker</option>
                     </select>
                 </div>
 
                 <div class="input-group">
-                    <label for="income">Annual Income (₹)</label>
+                    <label for="income">Annual Household Income (₹)</label>
                     <input type="number" id="income" name="income" min="0" value="0" step="5000" required>
                 </div>
 
-                <button type="submit" class="primary-btn">Find Matches</button>
+                <button type="submit" class="primary-btn">
+                    <span>Verify Eligibility</span>
+                </button>
             </form>
         </aside>
 
-        <!-- Main Content -->
+        <!-- Main Workspace -->
         <main class="main-content">
             <header>
-                <h2>Your Matched Schemes</h2>
-                <p id="status-message">Enter your details and click "Find Matches" to see schemes you are eligible for.</p>
+                <h2>Eligible Welfare Schemes</h2>
+                <p>Welcome to the national scheme matching engine. Enter your demographic and professional details to instantly discover central welfare programs you qualify for.</p>
+                <div id="status-message-container">
+                    <span id="status-message">Enter your details and verify eligibility to load schemes.</span>
+                </div>
             </header>
 
             <div class="schemes-grid" id="results-container">
-                <!-- Scheme Cards will be injected here -->
+                <!-- Verified Scheme Cards will be securely injected here via JavaScript -->
             </div>
         </main>
     </div>
